@@ -33,7 +33,7 @@ public class Employee {
 
         FileWriter fw = new FileWriter("employee_data.txt", true);
 
-        fw.write(empId + "," + name + "," + email + "," + phone + "," + account.getUsername() + "\n");
+        fw.write(empId + "," + name + "," + email + "," + phone + "," + account.getUsername() +","+ account.getUsername());
 
         fw.close();
     }
