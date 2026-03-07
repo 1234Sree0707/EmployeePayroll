@@ -12,6 +12,9 @@ public abstract class User {
         this.passwordHash=PasswordUtil.hash(password);
         this.role=role;
     }
+    public String getPasswordHash() {
+        return passwordHash;
+    }
     
     public void setPasswordHash(String passwordHash) {
     	this.passwordHash = passwordHash;

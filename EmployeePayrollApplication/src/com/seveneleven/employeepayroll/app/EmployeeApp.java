@@ -1,8 +1,10 @@
 package com.seveneleven.employeepayroll.app;
 
 import java.util.Scanner;
-import java.io.IOException;
 
+import java.io.IOException;
+import com.seveneleven.employeepayroll.payslip.*;
+import com.seveneleven.employeepayroll.service.*;
 import com.seveneleven.employeepayroll.model.Employee;
 import com.seveneleven.employeepayroll.model.UserAccount;
 import com.seveneleven.employeepayroll.model.RegularEmployee;
@@ -46,8 +48,7 @@ public class EmployeeApp {
 
             System.out.println("\n========EMPLOYEE AUTHENTICATION & LOGIN=========");
             AuthenticationService auth = new AuthenticationService();
-            Session session = auth.login();
-
+            Session session = auth.login(sc);
             if (session != null) {
                 System.out.println("\n" + session);
 
@@ -57,6 +58,18 @@ public class EmployeeApp {
                     System.out.println("Session expired.");
                 }
             }
+            PayrollService payroll = new PayrollService();
+
+            System.out.print("Enter Basic Salary: ");
+            double basic = sc.nextDouble();
+            sc.nextLine();
+
+            System.out.print("Enter Month: ");
+            String month = sc.nextLine();
+
+            Payslip payslip = payroll.generatePayslip(emp, basic, month);
+
+            System.out.println(payslip);
 
         } catch (ValidationException e) {
             System.out.println("\nValidation Failed: " + e.getMessage());
