@@ -70,6 +70,13 @@ public class EmployeeApp {
             Payslip payslip = payroll.generatePayslip(emp, basic, month);
 
             System.out.println(payslip);
+            FileService fileService = new FileService();
+
+            Payslip clonedPayslip = payslip.clone();
+
+            String filename = fileService.savePayslip(clonedPayslip);
+
+            System.out.println("Payslip downloaded: " + filename);
 
         } catch (ValidationException e) {
             System.out.println("\nValidation Failed: " + e.getMessage());
