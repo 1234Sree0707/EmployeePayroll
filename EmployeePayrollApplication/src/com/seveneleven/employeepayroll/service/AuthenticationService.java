@@ -67,6 +67,7 @@ public class AuthenticationService {
 
         User user = users.get(username);
 
+<<<<<<< HEAD
         if (user != null && user.authenticate(username, password)) {
 
             System.out.println("\nLogin Successful!");
@@ -79,6 +80,27 @@ public class AuthenticationService {
         System.out.println("Stored hash: " + user.getPasswordHash());
         System.out.println("Entered hash: " + PasswordUtil.hash(password));
         
+=======
+        // If username does not exist
+        if (user == null) {
+            System.out.println("User not found.");
+            return null;
+        }
+
+        if (user.authenticate(username, password)) {
+
+            System.out.println("\nLogin Successful!");
+            System.out.println("Role: " + user.getRole());
+
+            showDashboard(user.getRole());
+
+            return new Session(username);
+        }
+
+        // Debug info (optional)
+        System.out.println("Stored hash: " + user.getPasswordHash());
+        System.out.println("Entered hash: " + PasswordUtil.hash(password));
+>>>>>>> feature/UC4
 
         System.out.println("Invalid Credentials");
         return null;

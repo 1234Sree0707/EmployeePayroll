@@ -64,4 +64,8 @@ public class SalaryComponents {
     public double getAllowance() {
         return allowance;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> feature/UC4
