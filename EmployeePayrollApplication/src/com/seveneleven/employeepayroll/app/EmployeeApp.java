@@ -12,6 +12,7 @@ import com.seveneleven.employeepayroll.service.*;
 import com.seveneleven.employeepayroll.session.Session;
 import com.seveneleven.employeepayroll.util.Validation;
 import com.seveneleven.employeepayroll.validexception.ValidationException;
+import com.seveneleven.employeepayroll.util.ValidationService;
 
 public class EmployeeApp {
 
@@ -20,26 +21,27 @@ public class EmployeeApp {
         try (Scanner sc = new Scanner(System.in)) {
 
             // ===== Employee Registration =====
-            System.out.print("Enter Employee ID: ");
-            String id = sc.nextLine().trim();
-            Validation.isValidId(id);
+        	System.out.print("Enter Employee ID: ");
+        	String id = sc.nextLine().trim();
+        	ValidationService.validateEmployeeId(id);
 
             System.out.print("Enter Name: ");
             String name = sc.nextLine().trim();
 
             System.out.print("Enter Email: ");
             String email = sc.nextLine().trim();
-            Validation.isValidEmail(email);
+            ValidationService.validateEmail(email);
 
-            System.out.print("Enter Phone (10 digits starting 6-9): ");
+            System.out.print("Enter Phone: ");
             String phone = sc.nextLine().trim();
-            Validation.isValidPhone(phone);
+            ValidationService.validatePhone(phone);
 
             System.out.print("Create Username: ");
             String username = sc.nextLine().trim();
 
             System.out.print("Create Password: ");
             String password = sc.nextLine().trim();
+            ValidationService.validatePassword(password);
 
             UserAccount account = new UserAccount(username, password);
 
