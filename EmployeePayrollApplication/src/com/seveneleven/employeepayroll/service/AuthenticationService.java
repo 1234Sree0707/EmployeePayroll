@@ -67,7 +67,13 @@ public class AuthenticationService {
 
         User user = users.get(username);
 
-        if (user != null && user.authenticate(username, password)) {
+        // If username does not exist
+        if (user == null) {
+            System.out.println("User not found.");
+            return null;
+        }
+
+        if (user.authenticate(username, password)) {
 
             System.out.println("\nLogin Successful!");
             System.out.println("Role: " + user.getRole());
@@ -76,9 +82,10 @@ public class AuthenticationService {
 
             return new Session(username);
         }
+
+        // Debug info (optional)
         System.out.println("Stored hash: " + user.getPasswordHash());
         System.out.println("Entered hash: " + PasswordUtil.hash(password));
-        
 
         System.out.println("Invalid Credentials");
         return null;
