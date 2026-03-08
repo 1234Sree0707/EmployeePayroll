@@ -5,10 +5,10 @@ public class RegularEmployee extends User{
         super(username,password,"EMPLOYEE");
     }
 
-    public boolean authenticate(String username,String passwordHash){
+    @Override
+    public boolean authenticate(String username, String password) {
 
-    
         return this.username.equals(username) &&
-                this.passwordHash.equals(passwordHash);
+               this.passwordHash.equals(PasswordUtil.hash(password));
     }
 }
